@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="stats"
+            type="com.dm.creativerun.domain.entity.Stats" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        tools:ignore="ContentDescription">
+
+        <ImageView
+            android:layout_width="@dimen/stats_image_size"
+            android:layout_height="@dimen/stats_image_size"
+            android:layout_marginEnd="@dimen/stats_image_margin"
+            android:src="@drawable/ic_visibility_24dp" />
+
+        <TextView
+            android:id="@+id/viewsCount"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(stats.views)}"
+            tools:text="12" />
+
+        <ImageView
+            android:layout_width="@dimen/stats_image_size"
+            android:layout_height="@dimen/stats_image_size"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/stats_image_margin"
+            android:src="@drawable/ic_star_24dp" />
+
+        <TextView
+            android:id="@+id/appreciationsCount"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(stats.appreciations)}"
+            tools:text="12" />
+
+        <ImageView
+            android:layout_width="@dimen/stats_image_size"
+            android:layout_height="@dimen/stats_image_size"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/stats_image_margin"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:src="@drawable/ic_mode_comment_24dp" />
+
+        <TextView
+            android:id="@+id/commentsCount"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(stats.comments)}"
+            tools:text="12" />
+
+    </LinearLayout>
+
+</layout>

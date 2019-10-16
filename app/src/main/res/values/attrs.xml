@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ColorSeekBar">
+        <attr name="trackHeight" format="dimension" />
+        <attr name="trackCornerRadius" format="dimension" />
+        <attr name="useThumbPadding" format="boolean" />
+        <attr name="thumbHeight" format="dimension" />
+        <attr name="thumbWidth" format="dimension" />
+        <attr name="thumbStrokeWidth" format="dimension" />
+        <attr name="thumbStrokeColor" format="color" />
+        <attr name="thumbCornerRadius" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="BackdropFrontLayer">
+        <attr name="android:elevation" format="dimension" />
+        <attr name="backgroundColor" format="color" />
+        <attr name="cornerRadius" format="dimension" />
+    </declare-styleable>
+
+</resources>

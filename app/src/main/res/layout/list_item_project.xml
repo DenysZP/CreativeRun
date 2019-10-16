@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="obj"
+            type="com.dm.creativerun.domain.entity.Project" />
+
+        <variable
+            name="categoryClickListener"
+            type="com.dm.creativerun.ui.common.recycler.OnCategoryClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/list_item_indent"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:transitionName="@{@string/transition_container(obj.id)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small">
+
+                <TextView
+                    android:id="@+id/projectName"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/list_item_content_indent"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@{obj.name}"
+                    android:transitionName="@{@string/transition_project_name(obj.id)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.dm.creativerun.ui.view.CategoryGroup
+                    android:id="@+id/categoryGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/list_item_content_indent"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:transitionName="@{@string/transition_categories(obj.id)}"
+                    app:categories="@{obj.categories}"
+                    app:chipSpacingVertical="@dimen/margin_small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/projectName"
+                    app:onCategoryClick="@{categoryClickListener}" />
+
+                <com.dm.creativerun.ui.view.StatsView
+                    android:id="@+id/statsView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:transitionName="@{@string/transition_stats(obj.id)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/categoryGroup"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:stats="@{obj.stats}" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/thumbnailContainer"
+            android:layout_width="@dimen/thumbnail_image_size"
+            android:layout_height="@dimen/thumbnail_image_size"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:transitionName="@{@string/transition_poster_container(obj.id)}"
+            app:cardBackgroundColor="@{obj.colors.empty ? @color/colorAccent : safeUnbox(obj.colors[0])}"
+            app:cardElevation="@dimen/image_card_elevation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/thumbnailImage"
+                android:layout_width="@dimen/thumbnail_image_size"
+                android:layout_height="@dimen/thumbnail_image_size"
+                android:scaleType="centerCrop"
+                android:transitionName="@{@string/transition_poster_image(obj.id)}"
+                app:imageFromUrl="@{obj.thumbnailUrl}"
+                tools:ignore="ContentDescription" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="position"
+            type="int" />
+
+        <variable
+            name="src"
+            type="String" />
+
+        <variable
+            name="requestListener"
+            type="com.bumptech.glide.request.RequestListener&lt;android.graphics.drawable.Drawable>" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/imageContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:tag="@{position}">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:transitionName="@{@string/transition_image(position)}"
+            app:imageFromUrl="@{src}"
+            app:requestListener="@{requestListener}"
+            app:withCrossFade="@{false}"
+            tools:ignore="ContentDescription" />
+
+    </FrameLayout>
+</layout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_h5">24sp</dimen>
+    <dimen name="text_size_h6">20sp</dimen>
+    <dimen name="text_size_body1">16sp</dimen>
+    <dimen name="text_size_body2">14sp</dimen>
+    <dimen name="text_size_caption">12sp</dimen>
+
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+
+    <dimen name="thumbnail_image_size">100dp</dimen>
+    <dimen name="list_item_indent">66dp</dimen>
+    <dimen name="list_item_content_indent">50dp</dimen>
+    <dimen name="stats_image_size">18dp</dimen>
+    <dimen name="stats_image_margin">1dp</dimen>
+    <dimen name="backdrop_corner_radius">16dp</dimen>
+    <dimen name="front_layer_elevation">1dp</dimen>
+    <dimen name="front_layer_sub_header_size">42dp</dimen>
+    <dimen name="front_layer_divider_height">0.25dp</dimen>
+    <dimen name="item_divider">8dp</dimen>
+    <dimen name="color_circle_size">20dp</dimen>
+
+    <dimen name="csb_default_track_height">7dp</dimen>
+    <dimen name="csb_default_track_corner_radius">15dp</dimen>
+    <dimen name="csb_default_thumb_height">15dp</dimen>
+    <dimen name="csb_default_thumb_width">15dp</dimen>
+    <dimen name="csb_default_thumb_stroke_width">2dp</dimen>
+    <dimen name="csb_default_thumb_corner_radius">10dp</dimen>
+    <dimen name="image_card_elevation">3dp</dimen>
+    <dimen name="color_seek_bar_height">20dp</dimen>
+
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="transition_container">container %d</string>
+    <string name="transition_poster_container">poster_container %d</string>
+    <string name="transition_poster_image">poster_image %d</string>
+    <string name="transition_project_name">project_name %d</string>
+    <string name="transition_categories">categories %d</string>
+    <string name="transition_stats">stats %d</string>
+    <string name="transition_image">image %d</string>
+
+</resources>

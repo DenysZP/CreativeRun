@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.search.SearchFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dm.creativerun.ui.search.SearchViewModel" />
+
+        <variable
+            name="colorSelectListener"
+            type="com.dm.creativerun.ui.view.ColorSeekBar.OnColorSelectListener" />
+
+        <variable
+            name="isNoResults"
+            type="boolean" />
+
+        <variable
+            name="listScrollOffset"
+            type="int" />
+
+        <variable
+            name="isFrontLayerCollapsed"
+            type="boolean" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorPrimarySurface">
+
+        <include
+            android:id="@+id/backLayerLayout"
+            layout="@layout/layout_search_back_layer"
+            app:colorSelectListener="@{colorSelectListener}"
+            app:viewModel="@{viewModel}" />
+
+        <include
+            android:id="@+id/frontLayerLayout"
+            layout="@layout/layout_search_front_layer"
+            app:isFrontLayerCollapsed="@{isFrontLayerCollapsed}"
+            app:isNoResults="@{isNoResults}"
+            app:listScrollOffset="@{listScrollOffset}" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.details.DetailsFragment">
+
+    <data>
+
+        <import type="com.dm.creativerun.ui.common.binding.BindingConversionKt" />
+
+        <variable
+            name="viewModel"
+            type="com.dm.creativerun.ui.search.SearchViewModel" />
+
+        <variable
+            name="colorSelectListener"
+            type="com.dm.creativerun.ui.view.ColorSeekBar.OnColorSelectListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/backLayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/margin_small">
+
+        <TextView
+            android:id="@+id/colorLabel"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:text="@string/color"
+            android:textColor="?attr/colorOnPrimarySurface"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.dm.creativerun.ui.view.ColorChip
+            android:id="@+id/selectedColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:text="@{viewModel.colorData != null ? BindingConversionKt.convertColorToHexString(viewModel.colorData) : @string/no_color_selected}"
+            app:closeIconEnabled="@{viewModel.colorData != null ? true : false}"
+            app:color="@{viewModel.colorData}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/colorLabel"
+            app:onCloseIconClick="@{(view) -> viewModel.clearColor()}" />
+
+        <com.dm.creativerun.ui.view.ColorSeekBar
+            android:id="@+id/colorSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/color_seek_bar_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/selectedColor"
+            app:onColorSelect="@{colorSelectListener}"
+            app:useThumbPadding="true" />
+
+        <View
+            android:id="@+id/colorDivider"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/front_layer_divider_height"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:background="?attr/colorOnSurface"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/colorSeekBar" />
+
+        <TextView
+            android:id="@+id/categoriesLabel"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/category"
+            android:textColor="?attr/colorOnPrimarySurface"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/colorDivider" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/selectedCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:text="@{viewModel.categoryData ?? @string/select_category}"
+            app:closeIconEnabled="@{viewModel.categoryData != null ? true : false}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/categoriesLabel"
+            app:onCloseIconClick="@{(view) -> viewModel.clearCategory()}" />
+
+        <View
+            android:id="@+id/categoryDivider"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/front_layer_divider_height"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:background="?attr/colorOnSurface"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/selectedCategory" />
+
+        <TextView
+            android:id="@+id/sortLabel"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/sort"
+            android:textColor="?attr/colorOnPrimarySurface"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/categoryDivider" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/sortButtonGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_normal"
+            app:checkedChipIdData="@={viewModel.sortData}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sortLabel"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/dateButton"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/date" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/ratingButton"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rating" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/commentsButton"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/comments" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/viewsButton"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/views" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <View
+            android:id="@+id/sortDivider"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/front_layer_divider_height"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:background="?attr/colorOnSurface"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sortButtonGroup" />
+
+        <TextView
+            android:id="@+id/periodLabel"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/period"
+            android:textColor="?attr/colorOnPrimarySurface"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sortDivider" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/periodChipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_normal"
+            app:checkedChipIdData="@={viewModel.periodData}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/periodLabel"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/allButton"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/dayButton"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/weekButton"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/week" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/monthButton"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/month" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
